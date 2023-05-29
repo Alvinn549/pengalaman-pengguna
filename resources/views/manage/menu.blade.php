@@ -26,7 +26,11 @@
 
 				</div>
 			</div>
-			<div class="row mt-5 mb-2 justify-content-center">
+			<div class="row d-flex justify-content-center">
+				<a href="/manage-berita" class="btn shadow btn-menu me-2"><img src="icon/news.png" alt="" style="width: 25px; "><p>Berita</p></a>
+				<a href="/manage-about" class="btn shadow btn-menu ms-2"><img src="icon/garage.png" alt="" style="width: 25px; "><p>Profil Bengkel</p></a>
+			</div>
+			<!-- <div class="row mt-5 mb-2 justify-content-center">
 				<div class="col-md-4 align-content-center ">
 					<center>
 						<a href="/manage-vehicles" class="btn mb-4 shadow btn-menu" ><img src="icon/traffic-jam.png" alt="" style="width: 27px;"><p>Kendaraan</p></a>
@@ -46,7 +50,7 @@
 						<a href="/manage-users" class="btn shadow  btn-menu"><i class="fa-solid fa-address-book "></i><p>Users</p></a>
 					</center>
 				</div>
-			</div>	
+			</div>	 -->
 		</div>
 		<!-- Akhir Menu -->
 

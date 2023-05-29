@@ -63,14 +63,52 @@
     <!-- AKhir Caraousel -->
 
     <!-- Index -->
-    <div class="container home">
-      <div class="card shadow p-3 mb-5 mt-5 bg-body">
+    <div class="container-xxl mb-5 home">
+      <div class="card shadow p-3 mt-5 bg-body">
         <div class="card-body ">
+          <!-- Our Service -->
+          <div class="row mt-4">
+            <h3 class="text-center text mb-5">Apa saja layanan kami ?</h3>
+            <div class="container mt-3">
+              @if($profilBengkel->layanan->count())
+
+              @foreach($profilBengkel->layanan->sortDesc() as $layanan)
+                  <div class="row mb-5 " data-aos="fade-left">
+                    <div class="col-lg-3 img-wrapper">
+                      @if($layanan->foto)
+                      <img src="{{ asset('storage') }}/{{ $layanan->foto}}" class="img-fluid img1" >
+                      @else
+                      <img src="/image/no-data.jpg" class="img-fluid img1" >
+                      @endif
+                    </div>
+                    <div class="col-lg-9" >
+                      <h4>{{ $layanan->judul }}</h4>
+                      <p style="text-align: justify;">{{ $layanan->keterangan }}</p>
+                      <p class="btn btn-secondary" style="font-weight: bold;">Rp {{ number_format($layanan->harga, 2, ',', '.')  }}</p>
+                    </div>
+                  </div>
+              @endforeach
+              @else
+              <div class="card mb-5 mt-3">
+                <div class="card-body">
+                  <p class="text-center">Belum ada layanan tersedia..</p>
+                </div>
+              </div>
+              @endif
+            </div>
+          </div>
+          <!-- About Us -->
           <div class="row">
             <div class="col">
+              <div class="row mb-3">
+                <h3 class="mt-5">Tentang kami</h3>
+              </div>
               <div class="row">
+                <p>{{ $profilBengkel->body }}</p>
+              </div>
+              <!-- <div class="row">
                 <div class="col-lg-8">
-                  <h3 style="font-weight: bold;">Tentang Kami</h3>
+                  <p class="text-center" style="font-weight: bold;">Tentang Kami</p>
                   <p>{{ $profilBengkel->body }}</p>
                 </div>
                 @if($profilBengkel->foto)
@@ -82,46 +120,76 @@
                   <img src="/image/car-3.jpg" class="img-fluid shadow img1">
                 </div>
                 @endif
-              </div>
+              </div> -->
             </div>
           </div>
-          <div class="row mt-4">
-            <h3 style="font-weight: bold;" class="mt-3">Apa saja layanan kami ?</h3>
-            <div class="container">
-              @if($profilBengkel->layanan->count())
-              @foreach($profilBengkel->layanan->sortDesc() as $layanan)
-              <div class="card shadow mb-5 mt-3" data-aos="fade-left" >
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-lg-4 img-wrapper">
-                      @if($layanan->foto)
-                      <img src="{{ asset('storage') }}/{{ $layanan->foto}}" class="img-fluid img1" >
+          <!-- Contact us -->
+          <div class="row mt-5 ">
+            <div class="row mb-3">
+              <h3>Kontak Kami </h3>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="d-flex">
+                  <p class="me-1">No telp : </p>
+                  <p>{{ $profilBengkel->no_telp }}</p>
+                </div>
+                <div class="d-flex">
+                  <p class="me-1">Alamat : </p>
+                  <p>{{ $profilBengkel->alamat }}</p>
+                </div>
+                <div class="d-flex">
+                  <p class="me-1">Social Media : </p>
+                  <ul>
+                    <li>
+                      @if($profilBengkel->fb_link)
+                      <a href="{{ $profilBengkel->fb_link }}" target="_blank" class="btn facebook-icon" ><i class="bi bi-facebook me-2"></i>Facebook</a>
                       @else
-                      <img src="/image/profil3.jpeg" class="img-fluid img1" >
+                      <a href="#" class="btn facebook-icon" ><i class="bi bi-facebook me-2"></i>Facebook</a>
                       @endif
-                    </div>
-                    <div class="col-lg-8" >
-                      <h4>{{ $layanan->judul }}</h4>
-                      <p>{{ $layanan->keterangan }}</p>
-                      <div class="d-flex justify-content-end" style="font-weight: bold;">Rp {{ $layanan->harga }}</div>
-                    </div>
-                  </div>
+                    </li>
+                    <li>
+                      @if($profilBengkel->ig_link)
+                      <a href="{{ $profilBengkel->ig_link }}" target="_blank" class="btn instagram-icon" ><i class="bi bi-instagram me-2"></i>Instagram</a>
+                      @else
+                      <a href="#" class="btn instagram-icon" ><i class="bi bi-instagram me-2"></i>Instagram</a>
+                      @endif
+                    </li>
+                    <li>
+                      @if($profilBengkel->twt_link)
+                      <a href="{{ $profilBengkel->twt_link }}" target="_blank" class="btn twitter-icon" ><i class="bi bi-twitter me-2"></i>Twitter</a>
+                      @else
+                      <a href="#"  class="btn twitter-icon" ><i class="bi bi-twitter me-2"></i>Twitter</a>
+                      @endif
+                    </li>
+                    <li>
+                      @if($profilBengkel->wa_link)
+                      <a href="{{ $profilBengkel->wa_link }}" target="_blank" class="btn whatsapp-icon" ><i class="bi bi-whatsapp me-2"></i>Whatsapp</a>
+                      @else
+                      <a href="#" class="btn whatsapp-icon" ><i class="bi bi-whatsapp me-2"></i>Whatsapp</a>
+                      @endif
+                    </li>
+                  </ul>
                 </div>
               </div>
-              @endforeach
-              @else
-              <div class="card mb-5 mt-3">
-                <div class="card-body">
-                  <p class="text-center">Belum ada layanan tersedia..</p>
-                </div>
+            </div>
+            <div class="col-5 ms-auto">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
               </div>
-              @endif
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Say something</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="mb-3">
+                <center>
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </center>
+              </div>
             </div>
           </div>
-          <div class="row mt-4 mb-3">
-            <h3 style="font-weight: bold;">Kontak Kami </h3>
-          </div>
-          <div class="row d-flex justify-content-center">
+          <!-- <div class="row d-flex justify-content-center">
             @if($profilBengkel->maps_link)
             <div class="col-lg-5 img img-fluid">
               {!! $profilBengkel->maps_link !!}
@@ -161,6 +229,20 @@
                   @endif
                 </li>
               </ul>
+            </div>
+          </div> -->
+          <div class="row mt-5 mb-5">
+            <div class="row mb-4">
+              <h3 class="text-center">Lokasi Kami</h3>
+            </div>
+            <div class="row">
+              <div class="container-md d-flex justify-content-center" >
+                <div class="row">
+                  <div class="col" style="width:800px; height:400px;  border-radius: 40px;">
+                    {!! $profilBengkel->maps_link !!}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

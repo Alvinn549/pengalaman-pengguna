@@ -304,7 +304,7 @@
              </center>
              @else
              <center>
-                <img src="icon/default-user.png" class="img img-fluid imgprofil" alt="">
+                <img src="image/no-data.jpg" class="img img-fluid imgprofil" alt="">
              </center>
              @endif
           </div>

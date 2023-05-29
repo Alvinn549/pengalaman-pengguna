@@ -51,7 +51,7 @@
 								</div>
 								@enderror
 							</div>
-							<div class="mb-3">
+							<!-- <div class="mb-3">
 								<label for="Foto" class="form-label">Foto</label>
 								@if($profilBengkel->foto)
 								<img src="{{ asset('storage') }}/{{ $profilBengkel->foto }}" class="img-fluid imgprofil img-preview mb-2" alt="">
@@ -64,7 +64,7 @@
 									{{ $message }}
 								</div>
 								@enderror
-							</div>
+							</div> -->
 							<div class="mb-3">
 								<label for="Foto" class="form-label">Caraousel 1</label>
 								@if($profilBengkel->c_img1)
@@ -281,7 +281,7 @@
 
 							<div class="mb-3">
 								<label for="fb_link" class="form-label">Facebook link</label>
-								<input type="text" name="fb_link" class="form-control  @error('fb_link') is-invalid @enderror" id="fb_link" value="{{ $profilBengkel->fb_link }}">
+								<input type="link" name="fb_link" class="form-control  @error('fb_link') is-invalid @enderror" id="fb_link" value="{{ $profilBengkel->fb_link }}">
 								@error('fb_link')
 								<div class="invalid-feedback">
 									{{ $message }}
@@ -291,7 +291,7 @@
 
 							<div class="mb-3">
 								<label for="ig_link" class="form-label">Instagram link</label>
-								<input type="text" name="ig_link" class="form-control  @error('ig_link') is-invalid @enderror" id="ig_link" value="{{ $profilBengkel->ig_link }}">
+								<input type="link" name="ig_link" class="form-control  @error('ig_link') is-invalid @enderror" id="ig_link" value="{{ $profilBengkel->ig_link }}">
 								@error('ig_link')
 								<div class="invalid-feedback">
 									{{ $message }}
@@ -300,7 +300,7 @@
 							</div>
 							<div class="mb-3">
 								<label for="twt_link" class="form-label">Twitter link</label>
-								<input type="text" name="twt_link" class="form-control  @error('twt_link') is-invalid @enderror" id="twt_link" value="{{ $profilBengkel->twt_link }}">
+								<input type="link" name="twt_link" class="form-control  @error('twt_link') is-invalid @enderror" id="twt_link" value="{{ $profilBengkel->twt_link }}">
 								@error('twt_link')
 								<div class="invalid-feedback">
 									{{ $message }}
@@ -375,36 +375,15 @@
 			</div>
 		</div>
 
-		<div class="container home">
+		<div class="container-xxl home">
 			@include('partials.alert')
 			<div class="card shadow p-3 mb-5 mt-5 bg-body">
 				<div class="card-body ">
-					<div class="row mb-3">
-						<div class="col">
-							<div class="row">
-								<div class="d-flex justify-content-end">
-									<button type="button" class="mb-3 fa-regular fa-pen-to-square btn btnedit" id="btnklik1" data-bs-toggle="modal"data-bs-target="#ubah-tentang-kami"></button>
-								</div>
-								<div class="col-lg-8">
-									<h3 style="font-weight: bold;">Tentang Kami</h3>
-									<p>{{ $profilBengkel->body }}</p>
-								</div>
-								<div class="col-lg-4 img-wrapper">
-									@if($profilBengkel->foto)
-									<img src="{{ asset('storage') }}/{{ $profilBengkel->foto }}" class="img-fluid img1">
-									@else
-									<img src="/image/car-3.jpg" class="img-fluid img1">
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-
-						<h3 style="font-weight: bold;" class="mt-3 mb-4">Apa saja layanan kami ?</h3>
+					<!-- Our Service -->
+				<div class="row">
+						<h3 class="mt-3 mb-4">Apa saja layanan kami ?</h3>
 						<div class="d-flex justify-content-end">
-							<button  type="button" id="btn-add-layanan" class="btn shadow mb-4 btn-add-layanan" data-bs-toggle="modal" data-bs-target="#modal-tambah-layanan"><i class="bi bi-plus-circle me-2"></i>Tambah Layanan</button>
+							<button style="border-radius:40px" type="button" id="btn-add-layanan" class="btn btn-outline-primary mb-4" data-bs-toggle="modal" data-bs-target="#modal-tambah-layanan"><i class="bi bi-plus-circle me-2"></i>Tambah Layanan</button>
 						</div>
 						<div class="container">
 							@if($profilBengkel->layanan->count())
@@ -412,18 +391,18 @@
 							<div class="card shadow mb-5 mt-3" data-aos="fade-left" >
 								<div class="card-body">
 									<div class="row">
-										<div class="col-lg-4 img-wrapper">
+										<div class="col-lg-3 img-wrapper">
 											@if($layanan->foto)
 											<img src="{{ asset('storage') }}/{{ $layanan->foto}}" class="img-fluid img1" >
 											@else
-											<img src="/image/profil3.jpeg" class="img-fluid img1" >
+											<img src="/image/no-data.jpg" class="img-fluid img1" >
 											@endif
 										</div>
-										<div class="col-lg-8 mt-2" >
+										<div class="col-lg-9 mt-2" >
 											<h4>{{ $layanan->judul }}</h4>
 											<p>{{ $layanan->keterangan }}</p>
-											<div class="d-flex justify-content-end" style="font-weight: bold;">Rp {{ $layanan->harga }}</div>
-											<div class="d-flex justify-content-center">
+											<p class="btn btn-secondary" style="font-weight: bold;">Rp {{ number_format($layanan->harga, 2, ',', '.') }}</p>
+											<div class="d-flex justify-content-end">
 												<button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#delete-{{ $layanan->id }}">Hapus</button>
 											</div>
 										</div>
@@ -441,53 +420,92 @@
 						</div>
 					</div>
 					<hr>
+					<div class="row mb-3">
+						<div class="col">
+							<div class="row">
+								<div class="d-flex justify-content-end">
+									<button style="background-color: #ffffff;" onmouseover="this.style.backgroundColor='#f2f2f2';" onmouseout="this.style.backgroundColor='#ffffff';" type="button" class="mb-3 fa-regular fa-pen-to-square btn btnedit" id="btnklik1" data-bs-toggle="modal"data-bs-target="#ubah-tentang-kami"></button>
+								</div>
+								<div class="row mb-3">
+									<h3>Tentang kami</h3>
+								</div>
+								<div class="row">
+									<p>{{ $profilBengkel->body }}</p>
+								</div>
+								<!-- <div class="col-lg-8">
+									<h3 style="font-weight: bold;">Tentang Kami</h3>
+									<p>{{ $profilBengkel->body }}</p>
+								</div>
+								<div class="col-lg-4 img-wrapper">
+									@if($profilBengkel->foto)
+									<img src="{{ asset('storage') }}/{{ $profilBengkel->foto }}" class="img-fluid img1">
+									@else
+									<img src="/image/car-3.jpg" class="img-fluid img1">
+									@endif
+								</div> -->
+							</div>
+						</div>
+					</div>
+					<hr>
+					<!-- About Us -->
 					<div class="row mt-3 mb-3">
-						<h3 style="font-weight: bold;">Kontak Kami </h3>
+						<h3 >Kontak Kami </h3>
 						<div class="d-flex justify-content-end">
-							<button type="button" class="mb-3 fa-regular fa-pen-to-square btn btnedit" id="btnklik3" data-bs-toggle="modal"data-bs-target="#ubah-kontak-bengkel"></button>
+							<button style="background-color: #ffffff;" onmouseover="this.style.backgroundColor='#f2f2f2';" onmouseout="this.style.backgroundColor='#ffffff';" type="button" class="mb-3 fa-regular fa-pen-to-square btn btnedit" id="btnklik3" data-bs-toggle="modal"data-bs-target="#ubah-kontak-bengkel"></button>
 						</div>
 					</div>
 					<div class="row d-flex justify-content-center">
+						<div class="col">
+							<div class="row">
+								<div class="d-flex">
+									<p class="me-1">No telp : </p>
+									<p>{{ $profilBengkel->no_telp }}</p>
+								</div>
+								<div class="d-flex">
+									<p class="me-1">Alamat : </p>
+									<p>{{ $profilBengkel->alamat }}</p>
+								</div>
+								<div class="d-flex">
+									<p class="me-1">Social Media : </p>
+								<ul>
+									<li>
+									@if($profilBengkel->fb_link)
+										<a href="{{ $profilBengkel->fb_link }}" target="_blank" class="btn facebook-icon" ><i class="bi bi-facebook me-2"></i>Facebook</a>
+									@else
+										<a href="#" class="btn facebook-icon" ><i class="bi bi-facebook me-2"></i>Facebook</a>
+									@endif
+									</li>
+									<li>
+									@if($profilBengkel->ig_link)
+										<a href="{{ $profilBengkel->ig_link }}" target="_blank" class="btn instagram-icon" ><i class="bi bi-instagram me-2"></i>Instagram</a>
+									@else
+										<a href="#" class="btn instagram-icon" ><i class="bi bi-instagram me-2"></i>Instagram</a>
+									@endif
+									</li>
+									<li>
+									@if($profilBengkel->twt_link)
+										<a href="{{ $profilBengkel->twt_link }}" target="_blank" class="btn twitter-icon" ><i class="bi bi-twitter me-2"></i>Twitter</a>
+									@else
+										<a href="#"  class="btn twitter-icon" ><i class="bi bi-twitter me-2"></i>Twitter</a>
+									@endif
+									</li>
+									<li>
+									@if($profilBengkel->wa_link)
+										<a href="{{ $profilBengkel->wa_link }}" target="_blank" class="btn whatsapp-icon" ><i class="bi bi-whatsapp me-2"></i>Whatsapp</a>
+									@else
+										<a href="#" class="btn whatsapp-icon" ><i class="bi bi-whatsapp me-2"></i>Whatsapp</a>
+									@endif
+									</li>
+								</ul>
+								</div> 
+							</div>
+						</div>
 						@if($profilBengkel->maps_link)
-						<div class="col-lg-5 img img-fluid">
+						<div class="col img img-fluid">
 							{!! $profilBengkel->maps_link !!}
 						</div>
 						@else
 						@endif
-						<div class="col-lg-6">
-							<p class="post-alamat">{{ $profilBengkel->alamat }}</p>
-							<p class="post-no-telp">{{ $profilBengkel->no_telp }}</p>
-							<ul>
-								<li>
-									@if($profilBengkel->fb_link)
-									<a href="{{ $profilBengkel->fb_link }}" target="_blank" class="btn facebook-icon" ><i class="bi bi-facebook me-2"></i>Facebook</a>
-									@else
-									<a href="#"  class="btn facebook-icon" ><i class="bi bi-facebook me-2"></i>Facebook</a>
-									@endif
-								</li>
-								<li>
-									@if($profilBengkel->ig_link)
-									<a href="{{ $profilBengkel->ig_link }}" target="_blank" class="btn instagram-icon" ><i class="bi bi-instagram me-2"></i>Instagram</a>
-									@else
-									<a href="#" class="btn instagram-icon" ><i class="bi bi-instagram me-2"></i>Instagram</a>
-									@endif
-								</li>
-								<li>
-									@if($profilBengkel->twt_link)
-									<a href="{{ $profilBengkel->twt_link }}" target="_blank" class="btn twitter-icon" ><i class="bi bi-twitter me-2"></i>Twitter</a>
-									@else
-									<a href="#" class="btn twitter-icon" ><i class="bi bi-twitter me-2"></i>Twitter</a>
-									@endif
-								</li>
-								<li>
-									@if($profilBengkel->wa_link)
-									<a href="{{ $profilBengkel->wa_link }}" target="_blank" class="btn whatsapp-icon" ><i class="bi bi-whatsapp me-2"></i>Whatsapp</a>
-									@else
-									<a href="#"  class="btn whatsapp-icon" ><i class="bi bi-whatsapp me-2"></i>Whatsapp</a>
-									@endif
-								</li>
-							</ul>
-						</div>
 					</div>
 				</div>
 			</div>

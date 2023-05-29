@@ -11,7 +11,7 @@
             <a class="nav-link @if($title=='berita') active @else '' @endif" href="/berita">Berita</a>
             @if(auth()->user())
             @else
-            <a class="nav-link @if($title=='cari-perbaikan') active @else '' @endif" href="/search-progres">Cari Perbaikan</a>
+            <!-- <a class="nav-link @if($title=='cari-perbaikan') active @else '' @endif" href="/search-progres">Cari Perbaikan</a> -->
             @endif
           </div>
           @auth

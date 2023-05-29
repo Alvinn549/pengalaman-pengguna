@@ -71,7 +71,7 @@
             @else
             <div class="row">
               <div class="col">
-                <h4 class="text-center">Postingan tidak ditemukan..</h4>
+                <h4 class="text-center mt-4">Postingan tidak ditemukan..</h4>
               </div>
             </div>
             @endif
